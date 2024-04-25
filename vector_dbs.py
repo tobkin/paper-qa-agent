@@ -3,7 +3,7 @@ import weaviate
 from weaviate.auth import AuthApiKey
 from weaviate.classes import config, data
 
-class WeaviateVectorDb:
+class WeaviateVectorDb: # Todo: rename to WcsClient
     def __init__(self, text_splits, collection_name):
         """
         Initialize the WeaviateVectorDatabase with specified text data and collection name.
@@ -12,7 +12,7 @@ class WeaviateVectorDb:
             text_splits (list of str): List of text chunks to be inserted into the database.
             collection_name (str): Name of the collection to create and use in Weaviate.
         """
-        self.text_splits = text_splits
+        self.text_splits = text_splits 
         self.collection_name = collection_name
         self.client = None
         self._setup_collection()
@@ -26,18 +26,8 @@ class WeaviateVectorDb:
           return response.total_count
         finally:
           self._close()
-
-    def retrieve(self, query):
-        try:
-          self._connect()
-          all_chunks = self.client.collections.get(self.collection_name)
-          retrieved_chunks = all_chunks.query.near_text(query=query, limit=3)
-          retrieved_chunks_list = [obj.properties['chunk'] for obj in retrieved_chunks.objects]
-          formatted_chunks = "\n\n".join(chunk for chunk in retrieved_chunks_list)
-          return formatted_chunks
-        finally:
-          self._close()
-
+    
+    # Todo: this is a DRY violation
     def _connect(self):
         """Establish a connection to the Weaviate cluster."""
         self.client = weaviate.connect_to_wcs(
@@ -47,12 +37,13 @@ class WeaviateVectorDb:
                 "X-OpenAI-Api-Key": os.getenv("OPENAI_API_KEY")
             }
         )
-        
+   
+    # Todo: this is a DRY violation 
     def _close(self):
         """Close the Weaviate client connection."""
         if self.client:
             self.client.close()
-
+    
     def _setup_collection(self):
         """Setup or reset the collection in Weaviate."""
         try:
@@ -70,7 +61,7 @@ class WeaviateVectorDb:
           )
         finally:
           self._close()
-
+    
     def _insert_data(self):
         """Insert the text splits into the collection."""
         try:

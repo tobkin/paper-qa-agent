@@ -3,7 +3,7 @@ client = OpenAI()
 
 class Gpt35Generator:
   def __init__(self):
-    self.system_prompt = f"""
+    self._system_prompt = f"""
       You are an assistant for question-answering tasks. 
       Use the following pieces of retrieved context to answer the question. 
       If you don't know the answer, just say that you don't know. 
@@ -17,13 +17,13 @@ class Gpt35Generator:
       Answer:
       """
 
-  def generate(self, question, context):
+  def get_completion(self, question, context):
     completion_obj = client.chat.completions.create(
       model="gpt-3.5-turbo",
       messages=[
         {
           "role": "system",
-          "content": f"{self.system_prompt}"
+          "content": f"{self._system_prompt}"
         },
         {
           "role": "user",
