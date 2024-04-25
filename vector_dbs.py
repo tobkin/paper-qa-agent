@@ -57,6 +57,7 @@ class WeaviateVectorDb: # Todo: rename to WcsClient
                   config.Property(name="chunk", data_type=config.DataType.TEXT),
                   config.Property(name="chunk_index", data_type=config.DataType.INT),
               ],
+              # Todo: should this be declared in the indexer?
               vectorizer_config=config.Configure.Vectorizer.text2vec_openai()
           )
         finally:

@@ -27,3 +27,4 @@ Use `query_qa_rag_agent.ipynb`.
   - formats tables weird
   - doesn't handle images
   - doesn't format subheadings correctly
+- `vector_dbs.py`: vectorization strategy is declared here, and I think it makes more sense for it to be declared in `indexer.py`
