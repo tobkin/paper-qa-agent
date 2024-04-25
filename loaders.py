@@ -32,7 +32,7 @@ class HtmlDocumentLoader:
     def load(self):
         """
         Loads the HTML document from the specified URI into the `doc` attribute.
-        If caching is enabled and the document exists in cache, load it from there.
+        If the document exists in cache, load it from there.
 
         Returns:
             str: The content of the HTML document.
