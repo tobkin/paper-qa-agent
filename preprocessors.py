@@ -26,19 +26,16 @@ class ArxivHtmlPaperPreprocessor:
         pass
         
     def get_text(self, html_content):
-        # Extract parts from the HTML content
         title = self._extract_title(html_content)
         authors_affiliations = self._extract_authors_and_affiliations(html_content)
         abstract = self._extract_abstract(html_content)
         
-        # Extract sections S1 through S8
         sections = []
         for i in range(1, 9):
             section_id = "S" + str(i)
             section_text = self._extract_section_with_subheadings(html_content, section_id)
             sections.append(section_text)
 
-        # Combine all parts with two new lines in between each part
         cleaned_text = title + "\n\n" + authors_affiliations + "\n\n" + abstract + "\n\n" + "\n\n".join(sections)
         
         return cleaned_text
