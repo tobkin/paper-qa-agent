@@ -1,7 +1,6 @@
 import os
 import weaviate
 from weaviate.auth import AuthApiKey
-from weaviate.classes import config, data
 
 _TOP_K = 3
 
