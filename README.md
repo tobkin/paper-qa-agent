@@ -22,9 +22,11 @@ Use `query_qa_rag_agent.ipynb`.
 
 ## Tech Debt
 - `retrievers.py` and `vector_dbs.py` have some duplicate code
-- Weaviate connections are not optimized for latency
+- Weaviate client management needs to be refactored to use the weaviate context manager [1]
 - `preprocessors.py` 
   - formats tables weird
   - doesn't handle images
   - doesn't format subheadings correctly
 - `vector_dbs.py`: vectorization strategy is declared here, and I think it makes more sense for it to be declared in `indexer.py`
+
+[1] https://weaviate.io/developers/weaviate/client-libraries/python#connection-termination
