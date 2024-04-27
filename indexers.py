@@ -11,10 +11,10 @@ GITHUB_BLOG_POST = "https://lilianweng.github.io/posts/2023-06-23-agent/"
 ARXIV_RAG_SURVEY_PAPER = "https://arxiv.org/html/2312.10997v5"
 
 class NaiveWcsIndexer:
-  def __init__(self, doc_uri, WCS_COLLECTION_NAME):
+  def __init__(self, doc_uri, wcs_collection_name):
     
     self._loader = HtmlDocumentLoader(doc_uri, CACHE_PATH)
-    self._collection_name = WCS_COLLECTION_NAME
+    self._collection_name = wcs_collection_name
     if doc_uri == GITHUB_BLOG_POST:
       self._preprocessor = GithubBlogpostPreprocessor()
     elif doc_uri == ARXIV_RAG_SURVEY_PAPER:

@@ -1,5 +1,6 @@
 bs4
+dspy-ai==2.1.9
 lxml
-weaviate-client
 openai
 python-dotenv
+weaviate-client
