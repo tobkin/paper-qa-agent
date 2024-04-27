@@ -1,8 +1,6 @@
-
 from loaders import HtmlDocumentLoader
 from preprocessors import GithubBlogpostPreprocessor, ArxivHtmlPaperPreprocessor
 from text_splitters import SimpleCharacterTextSplitter
-from vector_dbs import WeaviateVectorDb
 
 CACHE_PATH = "./loader_cache"
 CHUNK_SIZE = 150
@@ -11,10 +9,10 @@ GITHUB_BLOG_POST = "https://lilianweng.github.io/posts/2023-06-23-agent/"
 ARXIV_RAG_SURVEY_PAPER = "https://arxiv.org/html/2312.10997v5"
 
 class NaiveWcsIndexer:
-  def __init__(self, doc_uri, wcs_collection_name):
+  def __init__(self, doc_uri, vector_db):
     
     self._loader = HtmlDocumentLoader(doc_uri, CACHE_PATH)
-    self._collection_name = wcs_collection_name
+    self._vector_db = vector_db
     if doc_uri == GITHUB_BLOG_POST:
       self._preprocessor = GithubBlogpostPreprocessor()
     elif doc_uri == ARXIV_RAG_SURVEY_PAPER:
@@ -26,4 +24,5 @@ class NaiveWcsIndexer:
     document_content = self._loader.load()
     cleaned_text = self._preprocessor.get_text(document_content)
     text_splits = self._text_splitter.split_text(cleaned_text)
-    self._vector_db = WeaviateVectorDb(text_splits, self._collection_name)
+    self._vector_db.setup_collection()
+    self._vector_db.insert_text_splits(text_splits)

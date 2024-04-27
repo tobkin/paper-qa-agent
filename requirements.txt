@@ -1,5 +1,5 @@
 bs4
-dspy-ai==2.1.9
+dspy-ai[weaviate]==2.4.5
 lxml
 openai
 python-dotenv
