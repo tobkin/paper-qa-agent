@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from wcs_client_factory import WcsClientFactory
 from indexers import NaiveWcsIndexer
 from retrievers import NaiveWcsRetriever
 from generators import Gpt35Generator
@@ -8,9 +7,8 @@ from generators import Gpt35Generator
 class NaiveWcsQaRagAgent:
   def __init__(self, doc_uri):
     self._validate_env_variables()
-    self._vector_db = WcsClientFactory.get_client()
-    self._indexer = NaiveWcsIndexer(doc_uri, self._vector_db)
-    self._retriever = NaiveWcsRetriever(self._vector_db)
+    self._indexer = NaiveWcsIndexer(doc_uri)
+    self._retriever = NaiveWcsRetriever()
     self._generator = Gpt35Generator()
     
   def query(self, question):
