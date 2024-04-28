@@ -56,10 +56,10 @@ class WcsClientAdapter():
       client.close()
   
   @staticmethod   
-  def retrieve_top_3_chunks(question):
+  def retrieve_top_5_chunks(question):
     client = WcsClientAdapter.get_wcs_client() 
     try:
-      top_k = 3
+      top_k = 5
       all_chunks = client.collections.get(WCS_COLLECTION_NAME)
       retrieved_chunks = all_chunks.query.near_text(query=question, limit=top_k)
       retrieved_chunks_list = [obj.properties['chunk'] for obj in retrieved_chunks.objects]

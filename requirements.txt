@@ -1,6 +1,7 @@
 bs4
 # dspy-ai[weaviate]==2.4.5
 git+https://github.com/tobkin/dspy_with_weaviate_v4.git@main#egg=dspy-ai
+jinja2
 lxml
 openai
 python-dotenv
