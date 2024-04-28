@@ -31,5 +31,6 @@ Use `query_qa_rag_agent.ipynb`.
 - `indexers.py`: calling syntax doesn't make it clear what side effects the constructor has
 - `dspy-rag-pipeline.ipynb`:
   - teleprompter parameters are unoptimized
+  - both a global and contextualized language model are used, and this is harder to read. Change to contextualized LMs only
 
 [1] https://weaviate.io/developers/weaviate/client-libraries/python#connection-termination
