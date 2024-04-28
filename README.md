@@ -29,5 +29,7 @@ Use `query_qa_rag_agent.ipynb`.
   - doesn't format subheadings correctly
 - `vector_dbs.py`: vectorization strategy is declared here, and I think it makes more sense for it to be declared in `indexer.py`
 - `indexers.py`: calling syntax doesn't make it clear what side effects the constructor has
+- `dspy-rag-pipeline.ipynb`:
+  - teleprompter parameters are unoptimized
 
 [1] https://weaviate.io/developers/weaviate/client-libraries/python#connection-termination
